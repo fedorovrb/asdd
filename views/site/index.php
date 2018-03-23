@@ -1,16 +1,19 @@
-<?php
+<?
+use yii\grid\GridView;
+use yii\data\ActiveDataProvider;
+use yii\widgets\Breadcrumbs;
 
-/* @var $this yii\web\View */
 
-$this->title = 'Modera';
-?>
-<div class="site-index">
 
-    <div class="jumbotron">
-        <h1>Congratulations!</h1>
+$provider = new ActiveDataProvider([
+    'query' => $data,
+]);
 
-        <p class="lead">You have successfully created your Yii-powered application.</p>
+// возвращает массив объектов Post
+$posts = $provider->getModels();
+   
 
-        <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
-    </div>
-</div>
+foreach($posts as $key)
+{ 
+    echo '<h2><a href = "index.php?r=site/index&parent_id=' . $key["id"] . '">' . $key["name"] . '</a></h2><br><br>';
+}
