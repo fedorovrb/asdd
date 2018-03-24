@@ -3,11 +3,12 @@ namespace app\models;
 
 use yii\base\Model;
 use yii\web\UploadedFile;
+use yii\data\SqlDataProvider;
 use Yii;
 
 class Upload extends Model
 {
-    
+    public $out = '';
     public $jsonFile;
 
     // проверка файла на валидность
@@ -59,12 +60,13 @@ class Upload extends Model
         }
     } 
     
-    // выводит список категорий
+     // выводит список категорий
     public function db_selec($parent)
     {
         return $rows = (new \yii\db\Query())
         ->from('categories')
-        ->where(['parent_id' => $parent]);
+         ->where(['parent_id' => $parent]);
     }
+    
 
 }
